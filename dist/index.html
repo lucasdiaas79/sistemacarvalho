@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#102733" />
+    <meta
+      name="description"
+      content="Sistema interno da Construtora Carvalho para gestão de obras e financeiro."
+    />
+    <title>Carvalho Gestão</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23102733'/%3E%3Cpath d='M18 17h28v8H26v14h20v8H18z' fill='%23f4b942'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+      <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V5l8-3v19M4 9h8M4 13h8M4 17h8M12 8h8v13M16 12h1M16 16h1"/></symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 7h15a2 2 0 0 1 2 2v10H5a2 2 0 0 1-2-2V6a3 3 0 0 1 3-3h12v4M16 12h5v4h-5a2 2 0 0 1 0-4Z"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v2M16 4a3 3 0 0 1 0 6M17 13a4 4 0 0 1 4 4v3"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></symbol>
+    </svg>
+
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegação principal">
+        <a class="brand" href="#" data-view="dashboard" aria-label="Carvalho Gestão">
+          <img src="assets/carvalho-logo.png" alt="Construtora Carvalho" />
+        </a>
+
+        <nav class="side-nav">
+          <button class="nav-item active" data-view="dashboard">
+            <svg><use href="#i-grid"></use></svg><span>Visão geral</span>
+          </button>
+          <button class="nav-item" data-view="obras">
+            <svg><use href="#i-building"></use></svg><span>Obras</span><span class="nav-count">5</span>
+          </button>
+          <button class="nav-item" data-view="financeiro">
+            <svg><use href="#i-wallet"></use></svg><span>Financeiro</span>
+          </button>
+          <button class="nav-item" data-view="pagamentos">
+            <svg><use href="#i-users"></use></svg><span>Pagamentos</span>
+          </button>
+          <button class="nav-item" data-view="alertas">
+            <svg><use href="#i-bell"></use></svg><span>Alertas</span><span class="nav-count alert">4</span>
+          </button>
+        </nav>
+
+        <div class="side-bottom">
+          <div class="demo-note"><span></span><p><strong>Modo demonstração</strong>Dados salvos neste navegador.</p></div>
+          <button class="profile-button" type="button">
+            <span class="avatar">MC</span>
+            <span><strong>Mario Carvalho</strong><small>Administrador</small></span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+          </button>
+          <div class="search-box">
+            <svg><use href="#i-search"></use></svg>
+            <input id="globalSearch" type="search" placeholder="Buscar obra, fornecedor ou lançamento" aria-label="Buscar" />
+            <kbd>Ctrl K</kbd>
+          </div>
+          <div class="top-actions">
+            <span class="today"><svg><use href="#i-calendar"></use></svg>08 out 2026</span>
+            <button class="icon-button" data-view="alertas" aria-label="Ver alertas"><svg><use href="#i-bell"></use></svg><span></span></button>
+            <button class="primary-button" data-open-entry><svg><use href="#i-plus"></use></svg>Novo lançamento</button>
+          </div>
+        </header>
+
+        <div class="workspace">
+          <section class="view active" id="view-dashboard" aria-labelledby="dashboardTitle">
+            <div class="page-heading">
+              <div><p class="eyebrow">QUINTA-FEIRA, 8 DE OUTUBRO</p><h1 id="dashboardTitle">Bom dia, Mario.</h1><p>A empresa tem <strong>4 pontos</strong> que precisam da sua atenção hoje.</p></div>
+              <button class="secondary-button" data-view="alertas">Ver prioridades <svg><use href="#i-arrow"></use></svg></button>
+            </div>
+
+            <div class="metric-grid">
+              <article class="metric-card dark">
+                <div class="metric-top"><span>Caixa disponível</span><span class="status-pill neutral">CONCILIAR</span></div>
+                <strong class="metric-value" id="cashMetric">R$ 0,00</strong>
+                <p>O saldo da planilha está zerado por ajustes.</p>
+              </article>
+              <article class="metric-card">
+                <div class="metric-top"><span>A receber em outubro</span><span class="trend positive">+18%</span></div>
+                <strong class="metric-value">R$ 51.300</strong>
+                <p>5 recebimentos programados</p>
+              </article>
+              <article class="metric-card">
+                <div class="metric-top"><span>Compromissos mensais</span><span class="trend warning">ALTO</span></div>
+                <strong class="metric-value">R$ 27.514</strong>
+                <p>Dívidas recorrentes e despesas fixas</p>
+              </article>
+              <article class="metric-card">
+                <div class="metric-top"><span>Contratos ativos</span><span class="trend positive">5 OBRAS</span></div>
+                <strong class="metric-value">R$ 238.300</strong>
+                <p>Valor total atualmente controlado</p>
+              </article>
+            </div>
+
+            <div class="dashboard-grid">
+              <article class="panel projects-panel">
+                <div class="panel-heading"><div><h2>Obras em andamento</h2><p>Orçamento e execução em um só lugar</p></div><button class="text-button" data-view="obras">Todas as obras <svg><use href="#i-arrow"></use></svg></button></div>
+                <div class="project-list" id="dashboardProjects"></div>
+              </article>
+
+              <article class="panel cash-panel">
+                <div class="panel-heading"><div><h2>Fluxo dos próximos meses</h2><p>Recebimentos previstos nos contratos</p></div><select aria-label="Período do fluxo"><option>Agosto a março</option></select></div>
+                <div class="chart-wrap">
+                  <div class="chart-scale"><span>R$ 70 mil</span><span>R$ 35 mil</span><span>R$ 0</span></div>
+                  <div class="bar-chart" id="cashChart"></div>
+                </div>
+                <div class="chart-footer"><span><i class="legend-dot received"></i>Recebido</span><span><i class="legend-dot expected"></i>Previsto</span></div>
+              </article>
+            </div>
+
+            <div class="lower-grid">
+              <article class="panel payment-panel">
+                <div class="panel-heading"><div><h2>Próximos compromissos</h2><p>O que vence primeiro</p></div><button class="icon-text-button"><svg><use href="#i-filter"></use></svg>Filtrar</button></div>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr><th>Data</th><th>Descrição</th><th>Obra</th><th>Valor</th><th>Situação</th></tr></thead>
+                    <tbody id="upcomingPayments"></tbody>
+                  </table>
+                </div>
+              </article>
+
+              <article class="panel attention-panel">
+                <div class="panel-heading"><div><h2>Atenção necessária</h2><p>Inconsistências encontradas</p></div><span class="alert-total">4</span></div>
+                <div class="attention-list">
+                  <button data-view="alertas"><span class="attention-icon critical">!</span><span><strong>Gabriel e Anelise</strong><small>Valor diverge entre duas telas</small></span><svg><use href="#i-arrow"></use></svg></button>
+                  <button data-view="alertas"><span class="attention-icon warning">!</span><span><strong>Narcizo</strong><small>Custos atuais não entram no total</small></span><svg><use href="#i-arrow"></use></svg></button>
+                  <button data-view="alertas"><span class="attention-icon neutral">i</span><span><strong>Financeiro</strong><small>Saldo bancário ainda não informado</small></span><svg><use href="#i-arrow"></use></svg></button>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" id="view-obras" aria-labelledby="obrasTitle">
+            <div class="page-heading compact"><div><p class="eyebrow">GESTÃO DE OBRAS</p><h1 id="obrasTitle">Obras</h1><p>Acompanhe contrato, execução e saldo previsto.</p></div><button class="primary-button" id="newProject"><svg><use href="#i-plus"></use></svg>Nova obra</button></div>
+            <div class="toolbar">
+              <div class="segmented"><button class="active">Em andamento <span>5</span></button><button>Concluídas <span>0</span></button></div>
+              <label class="inline-search"><svg><use href="#i-search"></use></svg><input type="search" id="projectSearch" placeholder="Buscar obra" /></label>
+            </div>
+            <div class="projects-grid" id="projectsGrid"></div>
+          </section>
+
+          <section class="view" id="view-obra-detalhe" aria-labelledby="projectDetailTitle">
+            <button class="back-button" id="backToProjects">‹ Voltar para obras</button>
+            <div class="project-detail-heading">
+              <div class="project-title-wrap"><span class="project-code large" id="detailCode">CC</span><div><p class="eyebrow">FICHA DA OBRA</p><h1 id="projectDetailTitle">Conceição</h1><p id="detailClient">Cliente: Conceição</p></div></div>
+              <div class="detail-actions"><button class="secondary-button" id="addIssue">Registrar ocorrência</button><button class="primary-button" id="addDiary"><svg><use href="#i-plus"></use></svg>Novo diário</button></div>
+            </div>
+
+            <div class="detail-metrics" id="detailMetrics"></div>
+
+            <article class="panel project-register">
+              <div class="panel-heading"><div><h2>Dados da obra</h2><p>Informações contratuais e responsáveis</p></div><button class="text-button" id="editProjectInfo">Editar cadastro</button></div>
+              <div class="register-grid" id="registerGrid"></div>
+            </article>
+
+            <div class="detail-tabs" role="tablist" aria-label="Seções da obra">
+              <button class="active" role="tab" data-detail-tab="overview">Visão geral</button>
+              <button role="tab" data-detail-tab="schedule">Cronograma</button>
+              <button role="tab" data-detail-tab="control">Controle <span class="tab-alert">2</span></button>
+              <button role="tab" data-detail-tab="documents">Documentos <span>4</span></button>
+              <button role="tab" data-detail-tab="diary">Diário de obra <span>3</span></button>
+              <button role="tab" data-detail-tab="issues">Pendências <span class="tab-alert">3</span></button>
+              <button role="tab" data-detail-tab="changes">Aditivos <span>1</span></button>
+            </div>
+            <div class="detail-tab-content" id="detailTabContent"></div>
+          </section>
+
+          <section class="view" id="view-financeiro" aria-labelledby="financeTitle">
+            <div class="page-heading compact"><div><p class="eyebrow">TESOURARIA</p><h1 id="financeTitle">Financeiro</h1><p>Entradas e saídas vinculadas às obras.</p></div><button class="primary-button" data-open-entry><svg><use href="#i-plus"></use></svg>Novo lançamento</button></div>
+            <div class="finance-summary">
+              <article><span>Entradas registradas</span><strong id="incomeTotal">R$ 86.813</strong><small>Agosto e setembro</small></article>
+              <article><span>Saídas registradas</span><strong id="expenseTotal">R$ 86.813</strong><small>Valores alocados por obra</small></article>
+              <article><span>Saldo conciliado</span><strong id="balanceTotal">R$ 0</strong><small>Precisa conferir com o banco</small></article>
+            </div>
+            <article class="panel finance-table-panel">
+              <div class="panel-heading finance-heading"><div class="segmented finance-tabs"><button class="active" data-finance-tab="all">Todos</button><button data-finance-tab="entrada">Entradas</button><button data-finance-tab="saida">Saídas</button></div><div class="finance-actions"><select id="financeProjectFilter"><option value="">Todas as obras</option></select><button class="icon-text-button"><svg><use href="#i-filter"></use></svg>Mais filtros</button></div></div>
+              <div class="table-wrap"><table><thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Obra</th><th>Tipo</th><th class="align-right">Valor</th></tr></thead><tbody id="transactionsTable"></tbody></table></div>
+            </article>
+          </section>
+
+          <section class="view" id="view-pagamentos" aria-labelledby="paymentsTitle">
+            <div class="page-heading compact"><div><p class="eyebrow">EQUIPE E EMPREITEIROS</p><h1 id="paymentsTitle">Pagamentos semanais</h1><p>Folha por obra, sem duplicidade de lançamento.</p></div><button class="primary-button" id="newPayment"><svg><use href="#i-plus"></use></svg>Registrar pagamento</button></div>
+            <div class="week-strip"><button aria-label="Semana anterior">‹</button><div><span>SEMANA ATUAL</span><strong>05 a 09 de outubro</strong></div><button aria-label="Próxima semana">›</button></div>
+            <div class="payment-stats"><article><span>Total da semana</span><strong>R$ 3.100</strong></article><article><span>Diaristas</span><strong>8</strong></article><article><span>Empreiteiros</span><strong>2</strong></article><article><span>Pendente de aprovação</span><strong class="amber">R$ 800</strong></article></div>
+            <div class="payroll-grid" id="payrollGrid"></div>
+          </section>
+
+          <section class="view" id="view-alertas" aria-labelledby="alertsTitle">
+            <div class="page-heading compact"><div><p class="eyebrow">CENTRAL DE ATENÇÃO</p><h1 id="alertsTitle">Alertas</h1><p>Corrija primeiro o que pode distorcer o caixa e o resultado.</p></div></div>
+            <div class="alerts-layout">
+              <div class="alerts-list" id="alertsList"></div>
+              <aside class="panel next-step-card"><span class="mini-label">PRÓXIMA MELHORIA</span><h2>Conciliação bancária</h2><p>Informe o saldo real de cada conta para o sistema comparar com os lançamentos e apontar diferenças automaticamente.</p><button class="secondary-button" id="configureBank">Configurar contas</button></aside>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="entryModal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" data-close-modal aria-label="Fechar"><svg><use href="#i-x"></use></svg></button>
+        <p class="eyebrow">FINANCEIRO</p>
+        <h2 id="modalTitle">Novo lançamento</h2>
+        <p class="modal-description">Todo valor deve ficar ligado a uma obra e categoria.</p>
+        <form id="entryForm">
+          <div class="type-toggle" role="radiogroup" aria-label="Tipo de lançamento">
+            <label><input type="radio" name="type" value="entrada" checked /><span>Entrada</span></label>
+            <label><input type="radio" name="type" value="saida" /><span>Saída</span></label>
+          </div>
+          <div class="form-grid">
+            <label class="full">Descrição<input name="description" required placeholder="Ex.: Pagamento da 2ª parcela" /></label>
+            <label>Valor<input name="amount" required inputmode="decimal" placeholder="R$ 0,00" /></label>
+            <label>Data<input name="date" required type="date" value="2026-10-08" /></label>
+            <label>Obra<select name="project" required></select></label>
+            <label>Categoria<select name="category" required><option>Recebimento do cliente</option><option>Mão de obra</option><option>Material</option><option>Empreiteiro</option><option>Despesa administrativa</option><option>Empréstimo</option></select></label>
+          </div>
+          <div class="modal-footer"><button type="button" class="secondary-button" data-close-modal>Cancelar</button><button type="submit" class="primary-button">Salvar lançamento</button></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"><span><svg><use href="#i-check"></use></svg></span><div><strong>Lançamento salvo</strong><small>O financeiro foi atualizado.</small></div></div>
+    <script src="app.js"></script>
+  </body>
+</html>
